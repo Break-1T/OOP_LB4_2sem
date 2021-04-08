@@ -63,78 +63,13 @@ namespace Task6
         private int Count;
         #region Main fields and propertys
         
-        private Runner _firstRunner;
-        private Runner _secondRunner;
-        private Runner _thirdRunner;
-        private Runner _fourthRunner;
-        private Runner _fifthRunner;
-        private Runner _sixthRunner;
-        private Runner _seventhRunner;
-
-
-        public Runner FirstRunner
-        {
-            get => _firstRunner;
-            set
-            {
-                _firstRunner = value;
-                OnPropertyChanged("FirstRunner");
-            }
-        }
-        public Runner SecondRunner
-        {
-            get => _secondRunner;
-            set
-            {
-                _secondRunner = value;
-                OnPropertyChanged("SecondRunner");
-            }
-        }
-        public Runner ThirdRunner
-        {
-            get => _thirdRunner;
-            set
-            {
-                _thirdRunner = value;
-                OnPropertyChanged("ThirdRunner");
-            }
-        }
-        public Runner FourthRunner
-        {
-            get => _fourthRunner;
-            set
-            {
-                _fourthRunner = value;
-                OnPropertyChanged("FourthRunner");
-            }
-        }
-        public Runner FifthRunner
-        {
-            get => _fifthRunner;
-            set
-            {
-                _fifthRunner = value;
-                OnPropertyChanged("FifthRunner");
-            }
-        }
-        public Runner SixthRunner
-        {
-            get => _sixthRunner;
-            set
-            {
-                _sixthRunner = value;
-                OnPropertyChanged("SixthRunner");
-            }
-        }
-        public Runner SeventhRunner
-        {
-            get => _seventhRunner;
-            set
-            {
-                _seventhRunner = value;
-                OnPropertyChanged("SeventhRunner");
-            }
-        }
+        public Runner FirstRunner { get; set; }
+        public Runner SecondRunner { get; set; }
+        public Runner ThirdRunner { get; set; }
+        public Runner FourthRunner { get; set; }
+        public Runner FifthRunner { get; set; }
+        public Runner SixthRunner { get; set; }
+        public Runner SeventhRunner { get; set; }
 
         private List<Runner> allRunners;
 
@@ -150,6 +85,7 @@ namespace Task6
         private Thread SixthR;
         private Thread SeventhR;
         private Thread CountR;
+        
         private List<Thread> allThreads;
         
         #endregion
@@ -285,7 +221,7 @@ namespace Task6
 
         private void CountRunner()
         {
-            while (true)
+            while (allThreads.Count>0)
             {
                 for (int i = 0; i < allThreads.Count; i++)
                 {
