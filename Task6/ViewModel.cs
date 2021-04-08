@@ -15,35 +15,64 @@ namespace Task6
         {
             Count = 1;
             rand = new Random();
-            
+
+            #region Thread init
             FirstR = new Thread(Run1);
-            SecondR = new Thread(Run2);
-            ThirdR = new Thread(Run3);
-            FourthR = new Thread(Run4);
-            FifthR = new Thread(Run5);
-            SixthR = new Thread(Run6);
-            SeventhR = new Thread(Run7);
-            CountR = new Thread(CountRunner);
+            FirstR.Name = "0";
             
-            allThreads = new List<Thread>() {FifthR, SecondR, ThirdR, FourthR, FifthR, SixthR, SeventhR};
-            allRunners = new List<double>() { FirstRunner,SecondRunner,ThirdRunner,FourthRunner,FifthRunner,SixthRunner,SeventhRunner};
+            SecondR = new Thread(Run2);
+            SecondR.Name = "1";
+            
+            ThirdR = new Thread(Run3);
+            ThirdR.Name = "2";
+            
+            FourthR = new Thread(Run4);
+            FourthR.Name = "3";
+            
+            FifthR = new Thread(Run5);
+            FifthR.Name = "4";
+            
+            SixthR = new Thread(Run6);
+            SixthR.Name = "5";
+            
+            SeventhR = new Thread(Run7);
+            SeventhR.Name = "6";
+            
+            CountR = new Thread(CountRunner);
+
+
+            #endregion
+
+            #region Runners init
+
+            FirstRunner = new Runner();
+            SecondRunner = new Runner();
+            ThirdRunner = new Runner();
+            FourthRunner = new Runner();
+            FifthRunner = new Runner();
+            SixthRunner = new Runner();
+            SeventhRunner = new Runner();
+
+            #endregion
+
+            allThreads = new List<Thread>() {FirstR, SecondR, ThirdR, FourthR, FifthR, SixthR, SeventhR};
+            allRunners = new List<Runner>() { FirstRunner,SecondRunner,ThirdRunner,FourthRunner,FifthRunner,SixthRunner,SeventhRunner};
         }
 
         private Random rand;
         private int Count;
-        
         #region Main fields and propertys
         
-        private double _firstRunner;
-        private double _secondRunner;
-        private double _thirdRunner;
-        private double _fourthRunner;
-        private double _fifthRunner;
-        private double _sixthRunner;
-        private double _seventhRunner;
+        private Runner _firstRunner;
+        private Runner _secondRunner;
+        private Runner _thirdRunner;
+        private Runner _fourthRunner;
+        private Runner _fifthRunner;
+        private Runner _sixthRunner;
+        private Runner _seventhRunner;
 
 
-        public double FirstRunner
+        public Runner FirstRunner
         {
             get => _firstRunner;
             set
@@ -52,7 +81,7 @@ namespace Task6
                 OnPropertyChanged("FirstRunner");
             }
         }
-        public double SecondRunner
+        public Runner SecondRunner
         {
             get => _secondRunner;
             set
@@ -61,7 +90,7 @@ namespace Task6
                 OnPropertyChanged("SecondRunner");
             }
         }
-        public double ThirdRunner
+        public Runner ThirdRunner
         {
             get => _thirdRunner;
             set
@@ -70,7 +99,7 @@ namespace Task6
                 OnPropertyChanged("ThirdRunner");
             }
         }
-        public double FourthRunner
+        public Runner FourthRunner
         {
             get => _fourthRunner;
             set
@@ -79,7 +108,7 @@ namespace Task6
                 OnPropertyChanged("FourthRunner");
             }
         }
-        public double FifthRunner
+        public Runner FifthRunner
         {
             get => _fifthRunner;
             set
@@ -88,7 +117,7 @@ namespace Task6
                 OnPropertyChanged("FifthRunner");
             }
         }
-        public double SixthRunner
+        public Runner SixthRunner
         {
             get => _sixthRunner;
             set
@@ -97,7 +126,7 @@ namespace Task6
                 OnPropertyChanged("SixthRunner");
             }
         }
-        public double SeventhRunner
+        public Runner SeventhRunner
         {
             get => _seventhRunner;
             set
@@ -107,19 +136,19 @@ namespace Task6
             }
         }
 
-        private List<double> allRunners;
+        private List<Runner> allRunners;
 
         #endregion
         
         #region Threads
 
-        public Thread FirstR { get; set; }
-        public Thread SecondR { get; set; }
-        public Thread ThirdR { get; set; }
-        public Thread FourthR { get; set; }
-        public Thread FifthR { get; set; }
-        public Thread SixthR { get; set; }
-        public Thread SeventhR { get; set; }
+        private Thread FirstR;
+        private Thread SecondR;
+        private Thread ThirdR;
+        private Thread FourthR;
+        private Thread FifthR;
+        private Thread SixthR;
+        private Thread SeventhR;
         private Thread CountR;
         private List<Thread> allThreads;
         
@@ -130,12 +159,12 @@ namespace Task6
         private void Run1()
         {
             var pause = GetPausesList();
-            while (FirstRunner < 100)
+            while (FirstRunner.Value < 100)
             {
-                FirstRunner += 5;
+                FirstRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (FirstRunner>i-5 && FirstRunner<i+5)
+                    if (FirstRunner.Value > i-5 && FirstRunner.Value < i+5)
                     {
                         Thread.Sleep(500);
                     }
@@ -146,12 +175,12 @@ namespace Task6
         private void Run2()
         {
             var pause = GetPausesList();
-            while (SecondRunner < 100)
+            while (SecondRunner.Value < 100)
             {
-                SecondRunner += 5;
+                SecondRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (SecondRunner > i - 5 && SecondRunner < i + 5)
+                    if (SecondRunner.Value > i - 5 && SecondRunner.Value < i + 5)
                     {
                         Thread.Sleep(500);
                     }
@@ -162,12 +191,12 @@ namespace Task6
         private void Run3()
         {
             var pause = GetPausesList();
-            while (ThirdRunner < 100)
+            while (ThirdRunner.Value < 100)
             {
-                ThirdRunner += 5;
+                ThirdRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (ThirdRunner > i - 5 && ThirdRunner < i + 5)
+                    if (ThirdRunner.Value > i - 5 && ThirdRunner.Value < i + 5)
                     {
                         Thread.Sleep(500);
                     }
@@ -178,12 +207,12 @@ namespace Task6
         private void Run4()
         {
             var pause = GetPausesList();
-            while (FourthRunner < 100)
+            while (FourthRunner.Value < 100)
             {
-                FourthRunner += 5;
+                FourthRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (FourthRunner > i - 5 && FourthRunner < i + 5)
+                    if (FourthRunner.Value > i - 5 && FourthRunner.Value < i + 5)
                     {
                         Thread.Sleep(500);
                     }
@@ -194,12 +223,12 @@ namespace Task6
         private void Run5()
         {
             var pause = GetPausesList();
-            while (FifthRunner < 100)
+            while (FifthRunner.Value < 100)
             {
-                FifthRunner += 5;
+                FifthRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (FifthRunner > i - 5 && FifthRunner < i + 5)
+                    if (FifthRunner.Value > i - 5 && FifthRunner.Value < i + 5)
                     {
                         Thread.Sleep(500);
                     }
@@ -210,12 +239,12 @@ namespace Task6
         private void Run6()
         {
             var pause = GetPausesList();
-            while (SixthRunner < 100)
+            while (SixthRunner.Value < 100)
             {
-                SixthRunner += 5;
+                SixthRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (SixthRunner > i - 5 && SixthRunner < i + 5)
+                    if (SixthRunner.Value > i - 5 && SixthRunner.Value < i + 5)
                     {
                         Thread.Sleep(500);
                     }
@@ -226,12 +255,12 @@ namespace Task6
         private void Run7()
         {
             var pause = GetPausesList();
-            while (SeventhRunner < 100)
+            while (SeventhRunner.Value < 100)
             {
-                SeventhRunner += 5;
+                SeventhRunner.Value += 5;
                 foreach (var i in pause)
                 {
-                    if (SeventhRunner > i - 5 && SeventhRunner < i + 5)
+                    if (SeventhRunner.Value > i - 5 && SeventhRunner.Value < i + 5)
                     {
                         Thread.Sleep(500);
                     }
@@ -244,27 +273,26 @@ namespace Task6
 
         public void Start()
         {
-            Parallel.Invoke(
-                () => FirstR.Start(),
-                () => SecondR.Start(),
-                () => ThirdR.Start(),
-                () => FourthR.Start(),
-                () => FifthR.Start(),
-                () => SixthR.Start(),
-                () => SeventhR.Start(),
-                () => CountR.Start()
-            );
+            FirstR.Start();
+            SecondR.Start();
+            ThirdR.Start();
+            FourthR.Start();
+            FifthR.Start();
+            SixthR.Start();
+            SeventhR.Start();
+            CountR.Start();
         }
 
         private void CountRunner()
         {
             while (true)
             {
-                foreach (var i in allThreads)
+                for (int i = 0; i < allThreads.Count; i++)
                 {
-                    if (!i.IsAlive)
+                    if (!allThreads[i].IsAlive)
                     {
-                        i.Name = $"Финишировал {Count}-м";
+                        allRunners[Convert.ToInt32(allThreads[i].Name)].Position = $"Финишировал: {Count}-м";
+                        allThreads.RemoveAt(i);
                         Count++;
                     }
                 }
