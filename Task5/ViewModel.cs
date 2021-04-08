@@ -100,7 +100,7 @@ namespace Task5
             {
                 for (int j = i + 1; j < _OutputArrayMaxMin.Length; j++)
                 {
-                    if (_OutputArrayMaxMin[i] > _OutputArrayMaxMin[j])
+                    if (_OutputArrayMaxMin[i] < _OutputArrayMaxMin[j])
                     {
                         temp = _OutputArrayMaxMin[i];
                         _OutputArrayMaxMin[i] = _OutputArrayMaxMin[j];
