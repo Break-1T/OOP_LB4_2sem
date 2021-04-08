@@ -27,7 +27,7 @@ namespace Task6
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            (DataContext as ViewModel).Start();
         }
     }
 }
