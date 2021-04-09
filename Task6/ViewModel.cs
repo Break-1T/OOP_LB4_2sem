@@ -9,7 +9,7 @@ using Task6.Annotations;
 
 namespace Task6
 {
-    class ViewModel:INotifyPropertyChanged
+    class ViewModel
     {
         public ViewModel()
         {
@@ -241,14 +241,6 @@ namespace Task6
             for (int i = 0; i < NumOfPauses; i++)
                 nums.Add(rand.Next(0,100));
             return nums;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
